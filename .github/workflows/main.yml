@@ -1,0 +1,34 @@
+name: CI/CD Pipeline for Node.js App
+
+# This workflow is triggered on every push to the main branch [cite: 13]
+on:
+  push:
+    branches:
+      - main
+
+# Define a single job to build and push the Docker image
+jobs:
+  build-and-push:
+    # Use the latest Ubuntu environment
+    runs-on: ubuntu-latest
+
+    # The steps that will be executed in the job
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Log in to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Step 3: Build the Docker image
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-demo-app:latest .
+
+      # Step 4: Push the Docker image to Docker Hub
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/nodejs-demo-app:latest
