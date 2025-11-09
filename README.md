@@ -1,7 +1,7 @@
 # DevOps Task 1: Automated Code Deployment using GitHub Actions
 
 ### Objective
-[cite_start]The objective of this task was to build a complete CI/CD pipeline to automate the deployment of a simple Node.js web application[cite: 4, 5]. [cite_start]This was achieved by containerizing the application using **Docker** and then setting up an automated workflow with **GitHub Actions** to build and push the Docker image to a registry[cite: 5, 10].
+The objective of this task was to build a complete CI/CD pipeline to automate the deployment of a simple Node.js web application. This was achieved by containerizing the application using **Docker** and then setting up an automated workflow with **GitHub Actions** to build and push the Docker image to a registry.
 
 ### Tools Used
 * **GitHub**: For version control and hosting the repository.
@@ -21,7 +21,7 @@ This repository contains all the necessary files to complete the task:
 ---
 
 ### The CI/CD Pipeline
-[cite_start]The workflow in `main.yml` is triggered automatically on every **push to the `main` branch**[cite: 13]. It contains a single job named `build-and-push`, which performs the following steps in sequence:
+The workflow in `main.yml` is triggered automatically on every **push to the `main` branch**. It contains a single job named `build-and-push`, which performs the following steps in sequence:
 
 1.  **Checkout repository**: This step uses a GitHub Action to copy the code from the repository onto the runner, making it available for the subsequent steps.
 2.  **Log in to Docker Hub**: This step securely logs in to Docker Hub using the credentials stored in the repository's GitHub Secrets. This is a crucial step for authentication before pushing the image.
@@ -29,7 +29,7 @@ This repository contains all the necessary files to complete the task:
 4.  **Push Docker image**: This final step pushes the newly built image to Docker Hub, making it available for use and future deployment.
 
 ### Security with GitHub Secrets
-[cite_start]To protect sensitive information like your Docker Hub username and access token, we used **GitHub Secrets**[cite: 24]. Instead of hardcoding credentials directly into the `main.yml` file, we stored them as encrypted variables in the repository settings. The pipeline can then securely access these values at runtime without ever exposing them in the code or logs.
+To protect sensitive information like your Docker Hub username and access token, we used **GitHub Secrets**. Instead of hardcoding credentials directly into the `main.yml` file, we stored them as encrypted variables in the repository settings. The pipeline can then securely access these values at runtime without ever exposing them in the code or logs.
 
 ---
 
